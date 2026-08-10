@@ -18,7 +18,7 @@ const demos: Demo[] = [
   { id: "counter", step: 2, title: "useState", element: <Counter /> },
   { id: "counter-class", step: 2, title: "useState — varianta veche, cu clasa", element: <CounterClass /> },
   { id: "prettier-format", step: 4, title: "Prettier și formatare automată", element: <PrettierFormat /> },
-  { id: "pure-functions", step: 3, title: "Pure vs impure functions", element: <PureFunctions /> },
+  { id: "pure-functions", step: 3, title: "Pure vs impure functions", element: <PureFunctions /> }
 ];
 
 function App() {
