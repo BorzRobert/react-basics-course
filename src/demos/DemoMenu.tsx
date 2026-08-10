@@ -4,7 +4,7 @@
 // persistata in context + localStorage.
 
 import React, { useState } from "react";
-import { useNavigation } from "../context/NavigationContext";
+import { useNavigation } from "@/context/NavigationContext";
 
 type MiniDemo = { id: string; step: number; title: string; content: React.ReactNode };
 

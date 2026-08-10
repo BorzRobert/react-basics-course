@@ -3,16 +3,17 @@
 
 import { useState, type ReactNode } from "react";
 import "./App.css";
-import { Welcome } from "./components/Welcome";
-import { Counter } from "./demos/Counter";
-import { CounterClass } from "./demos/CounterClass";
-import { PrettierFormat } from "./demos/PrettierFormat";
-import { PureFunctions } from "./demos/PureFunctions";
-import { Timer } from "./demos/Timer";
-import { LiftingState } from "./demos/LiftingState";
-import DemoMenu from "./demos/DemoMenu";
-import DemoTab from "./components/DemoTab";
-import { NavigationProvider } from "./context/NavigationContext";
+import { Welcome } from "@/components/Welcome";
+import { Counter } from "@/demos/Counter";
+import { CounterClass } from "@/demos/CounterClass";
+import { PrettierFormat } from "@/demos/PrettierFormat";
+import { PureFunctions } from "@/demos/PureFunctions";
+import { Timer } from "@/demos/Timer";
+import { LiftingState } from "@/demos/LiftingState";
+import { PathAlias } from "@/demos/PathAlias";
+import DemoMenu from "@/demos/DemoMenu";
+import DemoTab from "@/components/DemoTab";
+import { NavigationProvider } from "@/context/NavigationContext";
 
 // ReactNode = orice poate fi randat (element, text, null). `element` chiar tine
 // un element JSX, adica descrierea deja construita a demo-ului.
@@ -26,7 +27,8 @@ const demos: Demo[] = [
   { id: "pure-functions", step: 5, title: "Pure vs impure functions", element: <PureFunctions /> },
   { id: "timer", step: 6, title: "useEffect și side effects", element: <Timer /> },
   { id: "demo-menu", step: 7, title: "Demo: meniu și starea navigării", element: <DemoMenu /> },
-  { id: "lifting-state", step: 8, title: "Lifting state up", element: <LiftingState /> }
+  { id: "lifting-state", step: 8, title: "Lifting state up", element: <LiftingState /> },
+  { id: "path-alias", step: 9, title: "Path alias pentru importuri", element: <PathAlias /> }
 ];
 
 function App() {

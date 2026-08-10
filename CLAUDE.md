@@ -60,6 +60,8 @@ src/
 
 These folders exist from the start, deliberately. Creating a folder is not scaffolding a lesson; creating a _file_ for a concept not yet reached is, and stays forbidden.
 
+- Use `@/` imports for internal project paths instead of deep relative paths. This alias must be configured in both `tsconfig.app.json` and `vite.config.ts` so editor navigation and build resolution work together.
+
 Rules that keep this from collapsing back into one big file:
 
 - A demo never lives in `App.tsx`. Not even a small one.
