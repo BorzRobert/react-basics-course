@@ -17,7 +17,7 @@ npm run dev
 
 ## How it works
 
-- One app, one tab per concept.
+- One single app, one tab per concept.
 - Concepts are taught in order, one at a time: explanation first, then code written together.
 - Every concept is anchored to an equivalent in Python / Java / C# — or flagged as having none.
 
