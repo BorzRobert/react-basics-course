@@ -1,8 +1,6 @@
-// Shell-ul aplicatiei: tine registrul de demo-uri si pasul activ, niciodata
-// codul unui demo. Un pas nou = un fisier in src/demos/ + o intrare in `demos`.
-
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import "./App.css";
+import { useActiveStep } from "@/context/ActiveStepProvider";
 import { Welcome } from "@/components/Welcome";
 import { Counter } from "@/demos/Counter";
 import { CounterClass } from "@/demos/CounterClass";
@@ -12,9 +10,11 @@ import { Timer } from "@/demos/Timer";
 import { LiftingState } from "@/demos/LiftingState";
 import { PathAlias } from "@/demos/PathAlias";
 import { CustomHooks } from "@/demos/CustomHooks";
+import { ContextDemo } from "@/demos/ContextDemo";
 import DemoMenu from "@/demos/DemoMenu";
 import DemoTab from "@/components/DemoTab";
 import { NavigationProvider } from "@/context/NavigationContext";
+import { ActiveStepProvider } from "@/context/ActiveStepProvider";
 
 // ReactNode = orice poate fi randat (element, text, null). `element` chiar tine
 // un element JSX, adica descrierea deja construita a demo-ului.
@@ -30,30 +30,28 @@ const demos: Demo[] = [
   { id: "demo-menu", step: 7, title: "Demo: meniu și starea navigării", element: <DemoMenu /> },
   { id: "lifting-state", step: 8, title: "Lifting state up", element: <LiftingState /> },
   { id: "path-alias", step: 9, title: "Path alias pentru importuri", element: <PathAlias /> },
-  { id: "custom-hooks", step: 12, title: "Custom Hooks", element: <CustomHooks /> }
+  { id: "custom-hooks", step: 12, title: "Custom Hooks", element: <CustomHooks /> },
+  { id: "context", step: 13, title: "React Context API", element: <ContextDemo /> }
 ];
 
-function App() {
-  const [activeId, setActiveId] = useState("custom-hooks");
+// Componenta interna care consuma contextul.
+// Trebuie sa fie SUB provider-ul, de aia e separata de App.
+function AppContent() {
+  // Acum putem folosi hook-ul, pentru ca suntem sub provider.
+  const { activeId } = useActiveStep();
 
   // `?? demos[0]` face ca `active` sa nu fie niciodata undefined — asa evitam
   // `!` (non-null assertion), care e interzis in acest proiect.
   const active = demos.find(d => d.id === activeId) ?? demos[0];
 
   return (
-    <NavigationProvider>
+    <>
       <nav className="demo-menu" aria-label="Navigare demo-uri">
         <h2>Browsing demo-uri</h2>
         <ul>
           {demos.map(demo => (
             <li key={demo.id}>
-              <DemoTab
-                id={demo.id}
-                step={demo.step}
-                title={demo.title}
-                activeId={activeId}
-                onSelect={() => setActiveId(demo.id)}
-              />
+              <DemoTab id={demo.id} step={demo.step} title={demo.title} />
             </li>
           ))}
         </ul>
@@ -65,7 +63,18 @@ function App() {
         </h1>
         {active.element}
       </main>
-    </NavigationProvider>
+    </>
+  );
+}
+
+// Shell-ul aplicatiei: wraps cu provider si randeaza continutul.
+function App() {
+  return (
+    <ActiveStepProvider steps={demos}>
+      <NavigationProvider>
+        <AppContent />
+      </NavigationProvider>
+    </ActiveStepProvider>
   );
 }
 
