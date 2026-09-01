@@ -11,6 +11,7 @@ import { LiftingState } from "@/demos/LiftingState";
 import { PathAlias } from "@/demos/PathAlias";
 import { CustomHooks } from "@/demos/CustomHooks";
 import { ContextDemo } from "@/demos/ContextDemo";
+import { TailwindSetup } from "@/demos/TailwindSetup";
 import DemoMenu from "@/demos/DemoMenu";
 import DemoTab from "@/components/DemoTab";
 import { NavigationProvider } from "@/context/NavigationContext";
@@ -30,6 +31,7 @@ const demos: Demo[] = [
   { id: "demo-menu", step: 7, title: "Demo: meniu și starea navigării", element: <DemoMenu /> },
   { id: "lifting-state", step: 8, title: "Lifting state up", element: <LiftingState /> },
   { id: "path-alias", step: 9, title: "Path alias pentru importuri", element: <PathAlias /> },
+  { id: "tailwind-setup", step: 10, title: "Tailwind CSS și design tokens", element: <TailwindSetup /> },
   { id: "custom-hooks", step: 12, title: "Custom Hooks", element: <CustomHooks /> },
   { id: "context", step: 13, title: "React Context API", element: <ContextDemo /> }
 ];
