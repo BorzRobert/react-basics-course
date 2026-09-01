@@ -11,6 +11,7 @@ import { PureFunctions } from "@/demos/PureFunctions";
 import { Timer } from "@/demos/Timer";
 import { LiftingState } from "@/demos/LiftingState";
 import { PathAlias } from "@/demos/PathAlias";
+import { CustomHooks } from "@/demos/CustomHooks";
 import DemoMenu from "@/demos/DemoMenu";
 import DemoTab from "@/components/DemoTab";
 import { NavigationProvider } from "@/context/NavigationContext";
@@ -28,11 +29,12 @@ const demos: Demo[] = [
   { id: "timer", step: 6, title: "useEffect și side effects", element: <Timer /> },
   { id: "demo-menu", step: 7, title: "Demo: meniu și starea navigării", element: <DemoMenu /> },
   { id: "lifting-state", step: 8, title: "Lifting state up", element: <LiftingState /> },
-  { id: "path-alias", step: 9, title: "Path alias pentru importuri", element: <PathAlias /> }
+  { id: "path-alias", step: 9, title: "Path alias pentru importuri", element: <PathAlias /> },
+  { id: "custom-hooks", step: 12, title: "Custom Hooks", element: <CustomHooks /> }
 ];
 
 function App() {
-  const [activeId, setActiveId] = useState("lifting-state");
+  const [activeId, setActiveId] = useState("custom-hooks");
 
   // `?? demos[0]` face ca `active` sa nu fie niciodata undefined — asa evitam
   // `!` (non-null assertion), care e interzis in acest proiect.
