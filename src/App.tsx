@@ -45,25 +45,33 @@ function AppContent() {
   const active = demos.find(d => d.id === activeId) ?? demos[0];
 
   return (
-    <>
-      <nav className="demo-menu" aria-label="Navigare demo-uri">
-        <h2>Browsing demo-uri</h2>
-        <ul>
-          {demos.map(demo => (
-            <li key={demo.id}>
-              <DemoTab id={demo.id} step={demo.step} title={demo.title} />
-            </li>
-          ))}
-        </ul>
-      </nav>
+    <div className="app-shell">
+      <header className="app-header">
+        <p className="app-eyebrow">Caiet de laborator React</p>
+      </header>
 
-      <main>
-        <h1>
-          Pas {active.step} — {active.title}
-        </h1>
-        {active.element}
-      </main>
-    </>
+      <div className="app-body">
+        <nav className="demo-menu" aria-label="Navigare demo-uri">
+          <h2>Index de caiet</h2>
+          <ul>
+            {demos.map(demo => (
+              <li key={demo.id}>
+                <DemoTab id={demo.id} step={demo.step} title={demo.title} />
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* `key` schimba identitatea nodului la fiecare pas, ceea ce redeclanseaza
+            animatia de aparitie definita in index.css. */}
+        <main className="demo-content" key={active.id}>
+          <h1>
+            Pas {active.step} — {active.title}
+          </h1>
+          {active.element}
+        </main>
+      </div>
+    </div>
   );
 }
 
